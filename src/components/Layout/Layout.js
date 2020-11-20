@@ -15,6 +15,7 @@ import PropTypes from 'prop-types';
 import normalizeCss from 'normalize.css';
 import s from './Layout.css';
 import Header from '../Header';
+import Feedback from '../Feedback';
 import Footer from '../Footer';
 
 export default function Layout({ children }) {
@@ -23,7 +24,7 @@ export default function Layout({ children }) {
     <>
       <Header />
       {children}
-     
+      <Feedback />
       <Footer />
     </>
   );

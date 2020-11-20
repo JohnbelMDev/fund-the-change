@@ -37,6 +37,7 @@ process.on('unhandledRejection', (reason, p) => {
   // send entire app down. Process manager will restart it
   process.exit(1);
 });
+const stripe = require('stripe')('sk_test_51Ha6EUEsCFPlCMG1zxzWoFCMCkMdTEEnxmtsY54cDJ1ZCMebV8NwxX9V9IFrDojB0nhtXTdhk1EVVD1KDiUUPi9g00gVqMcbFl'); // Add your Secret Key Here
 
 //
 // Tell any CSS tooling (such as Material UI) to use all vendor prefixes if the
@@ -46,7 +47,7 @@ global.navigator = global.navigator || {};
 global.navigator.userAgent = global.navigator.userAgent || 'all';
 
 const app = express();
-
+const fs = require('fs')
 //
 // If you are using proxy from external machine, you can set TRUST_PROXY env
 // Default is to trust proxy headers only from loopback interface.
@@ -118,6 +119,49 @@ app.use(
   })),
 );
 
+// this is for testing only
+// we only doing so that we can work on the back end code
+app.get('/test.html', (req,res)=>{
+  const html = fs.readFileSync(__dirname + '/../test.html', {encoding:'utf8'})
+  res.set('Content-Type', 'text/html')
+
+  res.send(html)
+  res.end()
+
+})
+
+
+app.get('/completed.html', (req,res)=>{
+  const html = fs.readFileSync(__dirname + '/../completed.html', {encoding:'utf8'})
+  res.set('Content-Type', 'text/html')
+
+  res.send(html)
+  res.end()
+
+})
+
+
+app.post("/charge", (req, res) => {
+  try {
+    stripe.customers
+      .create({
+        name: req.body.name,
+        email: req.body.email,
+        source: req.body.stripeToken
+      })
+      .then(customer =>
+        stripe.charges.create({
+          amount: req.body.amount * 100,
+          currency: "usd",
+          customer: customer.id
+        })
+      )
+      .then(() => res.redirect("completed.html"))
+      .catch(err => console.log(err));
+  } catch (err) {
+    res.send(err);
+  }
+});
 //
 // Register server-side rendering middleware
 // -----------------------------------------------------------------------------

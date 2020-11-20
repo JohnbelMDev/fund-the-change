@@ -23,6 +23,10 @@ export default function Navigation() {
       <Link className={s.link} to="/contact">
         Contact
       </Link>
+
+      <Link className={s.link} to="/payment">
+        payment
+      </Link>
       <span className={s.spacer}> | </span>
       <Link className={s.link} to="/login">
         Log in

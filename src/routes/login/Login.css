@@ -7,22 +7,16 @@
  * LICENSE.txt file in the root directory of this source tree.
  */
 @import '../../components/variables.css';
-@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
-
 
 .root {
-  padding: 20px 20px 20px 20px;
-  background-color: #D0E3C4;
-  font-family: 'Poppins', sans-serif;
+  padding-left: 20px;
+  padding-right: 20px;
 }
 
 .container {
   margin: 0 auto;
-  padding: 20px 20px 20px 20px;
+  padding: 0 0 40px;
   max-width: 380px;
-  background-color:white; 
-  border-radius: 10px;
-  box-shadow: 13px 13px 35px 27px rgba(0,0,0,0.08);
 }
 
 .lead {
@@ -54,7 +48,6 @@
   font-size: 18px;
   line-height: 1.3333333;
   transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
-  border-radius: 5px;
 }
 
 .input:focus {
@@ -71,18 +64,17 @@
   outline: 0;
   border: 1px solid #373277;
   border-radius: 0;
-  background: #397c52;
+  background: #373277;
   color: #fff;
   text-align: center;
   text-decoration: none;
   font-size: 18px;
   line-height: 1.3333333;
   cursor: pointer;
-  border-radius: 5px;
 }
 
 .button:hover {
-  background: rgba(28, 144, 72, 0.8);
+  background: rgba(54, 50, 119, 0.8);
 }
 
 .button:focus {
@@ -90,6 +82,44 @@
   box-shadow: 0 0 8px rgba(0, 116, 194, 0.6);
 }
 
+.facebook {
+  border-color: #3b5998;
+  background: #3b5998;
+  composes: button;
+}
+
+.facebook:hover {
+  background: #2d4373;
+}
+
+.google {
+  border-color: #dd4b39;
+  background: #dd4b39;
+  composes: button;
+}
+
+.google:hover {
+  background: #c23321;
+}
+
+.twitter {
+  border-color: #55acee;
+  background: #55acee;
+  composes: button;
+}
+
+.twitter:hover {
+  background: #2795e9;
+}
+
+.icon {
+  display: inline-block;
+  margin: -2px 12px -2px 0;
+  width: 20px;
+  height: 20px;
+  vertical-align: middle;
+  fill: currentColor;
+}
 
 .lineThrough {
   position: relative;
